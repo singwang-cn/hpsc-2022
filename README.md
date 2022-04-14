@@ -1,4 +1,4 @@
-# hpc_lecture
+# hpc_lecture_assignments （student_id:22M30770）
 
 |          | Topic                                | Sample code               |
 | -------- | ------------------------------------ | ------------------------- |
