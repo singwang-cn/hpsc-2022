@@ -18,9 +18,11 @@ int main() {
   std::vector<int> offset(range,0);
   for (int i=1; i<range; i++) 
     offset[i] = offset[i-1] + bucket[i-1];
+#pragma omp parallel for shared(bucket, offset)
   for (int i=0; i<range; i++) {
     int j = offset[i];
-    for (; bucket[i]>0; bucket[i]--) {
+#pragma omp paralled for
+    for (int k=bucket[i]; k>0; k--) {
       key[j++] = i;
     }
   }
