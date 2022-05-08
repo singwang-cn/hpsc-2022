@@ -51,6 +51,9 @@ int main() {
     key[i] = key_g[i];
   }
 
+  cudaFree(key_g);
+  cudaFree(bucket);
+
   for (int i=0; i<n; i++) {
     printf("%d ",key[i]);
   }
