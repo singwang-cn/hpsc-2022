@@ -1,3 +1,4 @@
+/*Requires a gcc version below 9.0.0*/
 #include <iostream>
 #include <thrust/device_vector.h>
 #include <thrust/copy.h>
@@ -68,17 +69,15 @@ __global__ void computing_uv(double *u, double *v, double *un, double *vn, doubl
         //printf("%lf, %lf, %d\n", u[i], v[i], i);
     }
     __syncthreads();
-    /*
     if (i >= nx*(ny-1) && i < nx*ny) {
         u[i] = 1;
         v[i] = 0;
     }
+    __syncthreads();
     if (i < nx || i%nx == 0 || (i-nx+1)%nx == 0) {
         u[i] = 0;
         v[i] = 0;
     }   
-    */
-
 }
 
 int main(void)
@@ -106,9 +105,9 @@ int main(void)
                                             thrust::raw_pointer_cast(vn.data()),
                                             thrust::raw_pointer_cast(p.data()));
         cudaDeviceSynchronize();
-        //This process can not be executed in parallel for unknown reasons,
+        //This process behaves differently on GPU and CPU resulting in some undesired errors,
         //will continue to look for a solution after that.
-        for(int i = 0; i < u.size(); i++) {
+        /*for(int i = 0; i < u.size(); i++) {
             if (i >= nx*(ny-1) && i < nx*ny) {
                 u[i] = 1;
                 v[i] = 0;
@@ -117,7 +116,7 @@ int main(void)
                 u[i] = 0;
                 v[i] = 0;
             }   
-        } 
+        }*/
     }
     
     
