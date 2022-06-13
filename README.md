@@ -1,4 +1,5 @@
 # hpc_lecture_assignments （student_id:22M30770）
+**The code for the final assignment is in the directory named "assignment", which is a cuda implementation with cpp.
 
 |          | Topic                                | Sample code               |
 | -------- | ------------------------------------ | ------------------------- |
